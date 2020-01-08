@@ -1,0 +1,33 @@
+<span class="form-group">
+  <button type="button" mat-stroked-button (click)="fileInput.click()">Choose File</button>
+  <input #fileInput hidden type="file" id="file" (change)="handleFileInput($event)">
+</span>
+
+<ng-container *ngIf="data.neuron">
+  <span style="display:flex;width:100%">
+
+    <div style="width:50%;margin:8px">
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Neuron" [(ngModel)]="data.neuron" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <ng-container *ngFor="let block of blocks">
+          <mat-form-field>
+            <textarea matInput placeholder="{{ block }}" cdkTextareaAutosize [(ngModel)]="data[block]" [ngModelOptions]="{standalone: true}"></textarea>
+          </mat-form-field>
+        </ng-container>
+
+        <span class="button-row">
+          <button mat-stroked-button (click)="onSubmit()">Generate</button>
+          <button mat-stroked-button (click)="reset()">Reset</button>
+        </span>
+      </form>
+    </div>
+
+    <!-- <div style="width:50%;margin:8px">
+  {{ data | json }}
+  </div> -->
+
+  </span>
+</ng-container>
