@@ -7,12 +7,7 @@ From: ubuntu:18.04
 %post
   apt update && apt install -y curl python3-pip git
 
-  pip3 install pip setuptools wheel sphinx sphinx_rtd_theme --upgrade
-
   curl -sL https://deb.nodesource.com/setup_12.x | bash -
   apt update && apt install -y nodejs
 
-  npm install -g npm
-
-%environment
-  export PATH=$PATH:$HOME/.local/bin
+  npm install -g npm yarn

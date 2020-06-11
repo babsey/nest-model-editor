@@ -1,8 +1,18 @@
+.popup-installing {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  margin-top: -100px;
+  margin-left: -50px;
+  height: 100px;
+  width: 100px
+}
+
 mat-form-field {
   width: 100%;
 }
 
-.button-row button,
-.button-row a {
-  margin-left: 8px;
+.module-form-field .mat-form-field-wrapper {
+  margin-bottom: -1.5em !important;
 }

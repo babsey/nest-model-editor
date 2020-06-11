@@ -1,0 +1,5 @@
+<input #fileInput hidden type="file" id="file" (change)="handleFileInput($event)">
+
+<mat-nav-list>
+  <mat-list-item (click)="fileInput.click()">Choose File</mat-list-item>
+</mat-nav-list>

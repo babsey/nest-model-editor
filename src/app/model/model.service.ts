@@ -5,17 +5,37 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ModelService {
+  public data: any = {
+    'module_name': 'nestmlmodule',
+    'models': [],
+  };
+  public selectedModel: any = {};
+  public status: string = 'ready';
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  install(data) {
-    var urlRoot = 'http://localhost:5000';
+  reset(): void {
+    this.data = {
+      'module_name': 'nestmlmodule',
+      'models': [],
+    };
+    this.selectedModel = {};
+    this.status = 'ready';
+  }
 
-    this.http.post(urlRoot + '/script/model/install', data).subscribe(res => {
+
+  install() {
+    var urlRoot = 'http://localhost:5000';
+    this.status = 'install';
+    this.http.post(urlRoot + '/script/model/install', this.data).subscribe(res => {
+      this.status = res['response'].status == 'ok' ? 'success' : 'failed';
+      setTimeout(() => this.status = 'ready', 2000)
       console.log('res', res)
     }, error => {
+      this.status = 'failed';
+      setTimeout(() => this.status = 'ready', 2000)
       console.log('error', error)
     })
   }
